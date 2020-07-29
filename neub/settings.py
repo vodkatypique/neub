@@ -25,9 +25,8 @@ SECRET_KEY = '&z6384yw$4r$p1rlt=adnb$r4n03zmbc1ye4%rg+=xaor$ld8q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_CREDENTIALS = False
-CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:8081', 'https://127.0.0.1:8081', 'http://192.168.1.17:8081')
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_CREDENTIALS = True
 
 
 # Application definition
