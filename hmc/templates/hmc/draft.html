@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'hmc/nav.css' %}">
+</head>
+<body>
+{% include "layouts/nav.html" %}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Poste</th>
+            <th>Nat</th>
+            <th>Age</th>
+            <th>Taille</th>
+            <th>Niveau</th>
+            <th>Potentiel</th>
+            <th>Points forts assurés</th>
+            <th>Club</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tbody>
+        {% for player in page_obj %}
+            <tr>
+                <td style="text-align: center">{{ player.idu }}</td>
+                <td style="text-align: center">{{ player.name }}</td>
+                <td style="text-align: center">{{ player.poste }}</td>
+                <td style="text-align: center">{{ player.nat }}</td>
+                <td style="text-align: center">{{ player.age }}</td>
+                <td style="text-align: center">{{ player.taille }}</td>
+                <td style="text-align: center">{{ player.ca }}</td>
+                <td style="text-align: center">{{ player.pa }}</td>
+                <td style="text-align: center">{{ player.pfort }}</td>
+                <td style="text-align: center">{{ player.club }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </tbody>
+</table>
+
+<form method="GET">
+    <select name="paginate_by" id="">
+        <option value="15">15</option>
+        <option value="25">25</option>
+        <option value="35">35</option>
+        <option value="50">50</option>
+    </select>
+    <input type="submit" value="Paginate">
+
+
+<div class="paginator" style="text-align: center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&paginate_by={{ request.GET.paginate_by|default:15 }}">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}&paginate_by={{ request.GET.paginate_by|default:15}}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&paginate_by={{ request.GET.paginate_by|default:15 }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&paginate_by={{ request.GET.paginate_by|default:15  }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

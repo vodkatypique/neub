@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'hmc/nav.css' %}">
+</head>
+<body>
+{% include "layouts/nav.html" %}
+    <div style="text-align: center">
+        <div class="ouest">
+            <div>conférence OUEST</div>
+            {% for club in ouest %}
+                <a href="{% url 'hmc:club' club.id %}">
+                    <div>
+                        <img src="{{ club.logo }}" alt=""> {{ club.club }}  ({{ club.pseudo }}) <br>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="est">
+            <div>conférence EST</div>
+            {% for club in est %}
+                <a href="{% url 'hmc:club' club.id %}">
+                    <div>
+                        <img src="{{ club.logo }}" alt=""> {{ club.club }}  ({{ club.pseudo }}) <br>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
